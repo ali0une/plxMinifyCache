@@ -201,7 +201,7 @@ class plxMinifyCache extends plxPlugin {
 #			ob_end_flush();
 			exit;
 		} else {
-			$output .= "<!-- minified ".date("Y-m-d h:i:s")." -->";
+			$output .= "<!-- minified ".date("Y-m-d H:i:s")." -->";
 			file_put_contents($cache, $output);
 		}
 		';

@@ -3,8 +3,8 @@
  * Plugin plxMinifyCache
  *
  * @package	PLX
- * @version	1.0
- * @date	15/04/2013
+ * @version	1.1
+ * @date	17/04/2013
  * @author	i M@N
  **/
 class plxMinifyCache extends plxPlugin {
@@ -86,28 +86,30 @@ class plxMinifyCache extends plxPlugin {
 	/* one line */
 	$param = preg_replace("@\n@is", " ", $param);
 
-	/* start cache */
-	$delay = $plxPlugin->getParam('delay');
-	$cache = PLX_ROOT.'cache/cache_'.md5($_SERVER['QUERY_STRING']).'.html';
-	$expire = time() -$delay; // 3600 (1 hr)
-	if(@is_file($cache) && filemtime($cache) > $expire) {
-	$expire_offset = $delay; // set to a reasonable interval, say 3600 (1 hr)
-	header('Expires: '.gmdate('D, d M Y H:i:s', time() + $expire_offset).' GMT');
-	header('Cache-Control: private, must-revalidate, proxy-revalidate, post-check=10, pre-check=60, max-age='.$expire_offset.'');
-	header('Pragma: no-cache');
-	/* gzip */
-	if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start();
-	readfile($cache);
-	echo '<!-- cached '.$_SERVER['QUERY_STRING'].' '.date("Y-m-d H:i:s",filemtime($cache)).' -->';
-	/* end gzip */
-#	ob_end_flush();
-	exit;
+	/* if not preview mode */
+	if ($_SERVER['QUERY_STRING'] != 'preview') {
+		/* start cache */
+		$delay = $plxPlugin->getParam('delay');
+		$cache = PLX_ROOT.'cache/cache_'.md5($_SERVER['QUERY_STRING']).'.html';
+		$expire = time() -$delay; // 3600 (1 hr)
+		if(@is_file($cache) && filemtime($cache) > $expire) {
+		$expire_offset = $delay; // set to a reasonable interval, say 3600 (1 hr)
+		header('Expires: '.gmdate('D, d M Y H:i:s', time() + $expire_offset).' GMT');
+		header('Cache-Control: private, must-revalidate, proxy-revalidate, post-check=10, pre-check=60, max-age='.$expire_offset.'');
+		header('Pragma: no-cache');
+		/* gzip */
+		if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start();
+		readfile($cache);
+		echo '<!-- cached '.$_SERVER['QUERY_STRING'].' '.date("Y-m-d H:i:s",filemtime($cache)).' -->';
+		/* end gzip */
+#		ob_end_flush();
+		exit;
+		}
+		else {
+		file_put_contents($cache, $param);
+		}
+		/* end cache */
 	}
-	else {
-	file_put_contents($cache, $param);
-	}
-	/* end cache */
-
 	return $param.'<!-- minified '.date("Y-m-d h:i:s").' -->';
 	}
 }

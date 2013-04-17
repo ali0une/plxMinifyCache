@@ -16,7 +16,6 @@ eval($plxMotor->plxPlugins->callHook(&#039;IndexEnd&#039;));
 # Hook Plugins
 eval($plxMotor->plxPlugins->callHook(&#039;IndexEnd&#039;));
 
-
 # Hook plxMinifyCache
 if ($plxShow->callHook(&#039;IndexMinifyCache&#039;,$output) != &#039;&#039;) {
 $output = $plxShow->callHook(&#039;IndexMinifyCache&#039;,$output);

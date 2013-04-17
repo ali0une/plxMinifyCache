@@ -3,8 +3,8 @@
  * Plugin plxMinifyCache
  *
  * @package	PLX
- * @version	1.0
- * @date	15/04/2013
+ * @version	1.01
+ * @date	17/04/2013
  * @author	i M@N
  **/
 	if(!defined('PLX_ROOT')) exit; 

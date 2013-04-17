@@ -2,7 +2,7 @@ plxMinifyCache
 ==============
 
 # PluXML plxMinifyCache plugin
-plxMinifyCache : [PluXML][pluxml_site] plugin to minify and cache source by [i M@N][ali0une_site]
+plxMinifyCache : [PluXML][pluxml_site] plugin to minify and cache source by [i M@N][ali0une_site] & [Stephane Ferrari][pluxml_site]
 
 plxMinifyCache is based on [Steve Clay][mrclay_site] and [Ryan][ryan_site] Minify a PHP5 app that helps you follow several rules for client-side performance. it combines multiple CSS or Javascript files, removes unnecessary whitespace and comments, and serves them with gzip encoding and optimal client-side cache headers.
 
@@ -28,9 +28,12 @@ Minify under BSD 3-Clause License : <http://opensource.org/licenses/BSD-3-Clause
 ## Credits
 [PluXML][pluxml_site] a CMS with XML inside 
 
-Minify is made by [Steve Clay][mrclay_site] and [Ryan][ryan_site] check his [Github][mrclay_github]
+[Stephane Ferrari][StephaneF_twitter], [PluXML][pluxml_site] project manager and developments manager 
+
+Minify is made by [Steve Clay][mrclay_site] and [Ryan][ryan_site] check their [Github][mrclay_github]
 
 [pluxml_site]: http://www.pluxml.org/
+[StephaneF_twitter]: http://twitter.com/stephane_f
 [ali0une_site]: http://imanweb.free.fr
 [mrclay_site]: http://www.mrclay.org
 [mrclay_github]: http://github.com/mrclay/minify/

@@ -3,8 +3,8 @@
  * Plugin plxMinifyCache
  *
  * @package	PLX
- * @version	1.2
- * @date	18/04/2013
+ * @version	1.3
+ * @date	19/04/2013
  * @author	i M@N, Stephane F.
  **/
 class plxMinifyCache extends plxPlugin {
@@ -28,8 +28,7 @@ class plxMinifyCache extends plxPlugin {
 		$this->setAdminProfil(PROFIL_ADMIN);
 
 		# Déclarations des hooks
-		if($_SERVER['QUERY_STRING'] != 'preview') # pas de gestion du cache si on est en mode preview
-			$this->addHook('IndexEnd', 'IndexEnd');
+		$this->addHook('IndexEnd', 'IndexEnd');
 	}
 
 	/**
@@ -167,28 +166,60 @@ class plxMinifyCache extends plxPlugin {
 	public function IndexEnd() {
 
 		$string = '
+	$plxShow = plxShow::getInstance();
+
+	$minify = explode(",","'.$this->getParam("minify").'");
+#$output = print_r($minify); exit; #debug
+
+
+
+
 		include_once(PLX_PLUGINS."plxMinifyCache/lib/HTML.php");
+if (in_array("css",$minify)) {
 #		include_once(PLX_PLUGINS."plxMinifyCache/lib/CSS.php");
+}
+if (in_array("javascript",$minify)) {
 		include_once(PLX_PLUGINS."plxMinifyCache/lib/JSMin.php");
 		include_once(PLX_PLUGINS."plxMinifyCache/lib/CommentPreserver.php");
+}
 
 		$output = preg_replace("@ {2,}|\t+@is", "", $output);
 		$output = preg_replace("@<br />@is", "<br>", $output);
 		$output = preg_replace("@<hr />@is", "<hr>", $output);
 
-		$output = Minify_HTML::minify($output, array(
-#				"cssMinifier" => array("Minify_CSS", "minify"),
-				"jsMinifier" => array("JSMin", "minify"),
-				"jsCleanComments",
-				"xhtml" => true
-			)
-		);
+#$options = array(
+##				"cssMinifier" => array("Minify_CSS", "minify"),
+#				"jsMinifier" => array("JSMin", "minify"),
+#				"jsCleanComments",
+#				"xhtml" => true
+#			);
+
+$options = array("xhtml" => true); # set Minify_HTML::minify options
+
+if (in_array("css",$minify)) {
+#				$options[cssMinifier][0] = "Minify_CSS";
+#				$options[cssMinifier][1] = "minify";
+}
+if (in_array("javascript",$minify)) {
+				$options[jsMinifier][0] = "JSMin";
+				$options[jsMinifier][1] = "minify";
+				$options[0] = "jsCleanComments";
+}
+
+		$output = Minify_HTML::minify($output, $options);
+
+#$output = print_r($options);exit; #debug
 
 		$output = preg_replace("@\n@is", " ", $output); # suppression de retour chariot
 
+#$output = print_r($plxShow->mode());exit; #debug
+	$exclude = explode(",","'.$this->getParam("exclude").'");
+#$output = print_r($exclude); exit; #debug
+
+		if (!in_array($plxShow->mode(),$exclude)) {
 		$delay = "'.$this->getParam("delay").'";
 		$cache = PLX_ROOT."cache/cache_".md5($_SERVER["QUERY_STRING"]).".html";
-		$expire = time() - $delay; // 3600 (1 hr)
+		$expire = time() - $delay; # 3600 (1 hr)
 		if(@is_file($cache) AND filemtime($cache) > $expire) {
 			$expire_offset = $delay;
 			header("Expires: ".gmdate("D, d M Y H:i:s", time() + $expire_offset)." GMT");
@@ -197,13 +228,16 @@ class plxMinifyCache extends plxPlugin {
 			$gzip = substr_count($_SERVER["HTTP_ACCEPT_ENCODING"], "gzip") ? "ob_gzhandler" : "";
 			ob_start($gzip);
 			readfile($cache);
-			echo "<!-- cached ".$_SERVER["QUERY_STRING"]." ".date("Y-m-d H:i:s",filemtime($cache))." -->";
 #			ob_end_flush();
 			exit;
 		} else {
-			$output .= "<!-- minified ".date("Y-m-d H:i:s")." -->";
+			$output .= "<!-- cached ".$_SERVER["QUERY_STRING"]." ".date("Y-m-d H:i:s")." -->";
 			file_put_contents($cache, $output);
 		}
+	}
+	else {
+			$output .= "<!-- minified ".date("Y-m-d H:i:s")." -->";
+	}
 		';
 		echo '<?php '.$string.' ?>';
 	}

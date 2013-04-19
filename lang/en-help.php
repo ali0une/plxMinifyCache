@@ -13,5 +13,5 @@
 
 <p>&nbsp;</p>
 <h3>Configuration</h3>
-<p>in the configuration part of the plugin (Paramètres > plugins > plxMinifyCache configuration), you can change cache duration (in seconds).</p>
+<p>in the configuration part of the plugin (Paramètres > plugins > plxMinifyCache configuration), you can change cache duration (in seconds), exclude article and search pages from being cached and minify inline scripts.</p>
 <p>in the administration part of the plugin (plxMinifyCache), you can clean cache.</p>

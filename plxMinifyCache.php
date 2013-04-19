@@ -217,7 +217,7 @@ if (in_array("css",$minify)) { # set cssMinifier::minify options
 	$exclude = explode(",","'.$this->getParam("exclude").'");
 #$output = print_r($exclude); exit; #debug
 
-		if ((!in_array($plxShow->mode(),$exclude)) AND (!in_array("post",$exclude))) { # post = AND ($_SERVER["REQUEST_METHOD"]!="POST"))
+	if ((!in_array($plxShow->mode(),$exclude)) AND ($_SERVER["REQUEST_METHOD"] != "POST")) {
 		$delay = "'.$this->getParam("delay").'";
 		$cache = PLX_ROOT."cache/cache_".md5($_SERVER["QUERY_STRING"]).".html";
 		$expire = time() - $delay; # 3600 (1 hr)

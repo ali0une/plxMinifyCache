@@ -13,5 +13,5 @@
 
 <p>&nbsp;</p>
 <h3>Configuration</h3>
-<p>in the configuration part of the plugin (Parameters > plugins > plxMinifyCache configuration), you can change cache duration (in seconds), exclude pages article, search or issued from POST from being cached and minify inline scripts and styles.</p>
+<p>in the configuration part of the plugin (Parameters > plugins > plxMinifyCache configuration), you can change cache duration (in seconds), exclude pages article and search from being cached and minify inline scripts and styles. Pages issued from POST are not cached</p>
 <p>in the administration part of the plugin (plxMinifyCache), you can clean cache.</p>

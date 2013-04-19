@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <document>
 	<parameter name="delay" type="cdata"><![CDATA[3600]]></parameter>
-	<parameter name="exclude" type="string">article</parameter>
+	<parameter name="exclude" type="string">article,post</parameter>
 	<parameter name="minify" type="string">css,javascript</parameter>
 </document>

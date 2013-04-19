@@ -19,7 +19,7 @@ if(!empty($_POST)) {
 	$plxPlugin->setParam('minify', implode(',',$_POST['minify']), 'string');
 } else {
 	$plxPlugin->setParam('delay', '3600', 'cdata');
-	$plxPlugin->setParam('exclude', 'article', 'string');
+	$plxPlugin->setParam('exclude', 'article,post', 'string');
 	$plxPlugin->setParam('minify', 'css,javascript', 'string');
 }
 	$plxPlugin->saveParams();
@@ -47,8 +47,7 @@ $minify = $plxPlugin->getParam('minify')=='' ? '' : $plxPlugin->getParam('minify
 			echo '&nbsp;<input type="checkbox" id="article" name="exclude[]"'.$selected.' value="article" /><label for="article">&nbsp;'.$plxPlugin->lang(L_ARTICLE).'</label>';
 			$selected = (is_array($nocache) AND in_array('search', $nocache)) ? ' checked="checked"' : '';
 			echo '&nbsp;<input type="checkbox" id="search" name="exclude[]"'.$selected.' value="search" /><label for="search">&nbsp;'.$plxPlugin->lang(L_SEARCH).'</label>';
-			$selected = (is_array($nocache) AND in_array('post', $nocache)) ? ' checked="checked"' : '';
-			echo '&nbsp;<input type="checkbox" id="post" name="exclude[]"'.$selected.' value="post" /><label for="post">&nbsp;'.$plxPlugin->lang(L_POST).'</label>';
+			echo '&nbsp;<input type="checkbox" id="post" name="exclude[]" checked="checked" value="post" disabled="" /><label for="post">&nbsp;'.$plxPlugin->lang(L_POST).'</label>';
 		?>
 	<br />
 		<label><?php $plxPlugin->lang('L_MINIFY') ?>&nbsp;:</label>

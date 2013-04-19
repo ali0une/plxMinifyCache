@@ -3,8 +3,8 @@
  * Plugin plxMinifyCache
  *
  * @package	PLX
- * @version	1.3
- * @date	19/04/2013
+ * @version	1.4
+ * @date	20/04/2013
  * @author	i M@N, Stephane F.
  **/
 class plxMinifyCache extends plxPlugin {
@@ -171,12 +171,10 @@ class plxMinifyCache extends plxPlugin {
 	$minify = explode(",","'.$this->getParam("minify").'");
 #$output = print_r($minify); exit; #debug
 
-
-
-
 		include_once(PLX_PLUGINS."plxMinifyCache/lib/HTML.php");
 if (in_array("css",$minify)) {
-#		include_once(PLX_PLUGINS."plxMinifyCache/lib/CSS.php");
+		include_once(PLX_PLUGINS."plxMinifyCache/lib/CSS.php");
+		include_once(PLX_PLUGINS."plxMinifyCache/lib/Compressor.php");
 }
 if (in_array("javascript",$minify)) {
 		include_once(PLX_PLUGINS."plxMinifyCache/lib/JSMin.php");
@@ -196,17 +194,20 @@ if (in_array("javascript",$minify)) {
 
 $options = array("xhtml" => true); # set Minify_HTML::minify options
 
-if (in_array("css",$minify)) {
-#				$options[cssMinifier][0] = "Minify_CSS";
-#				$options[cssMinifier][1] = "minify";
-}
-if (in_array("javascript",$minify)) {
+if (in_array("javascript",$minify)) { # set jsMinifier::minify options
 				$options[jsMinifier][0] = "JSMin";
 				$options[jsMinifier][1] = "minify";
 				$options[0] = "jsCleanComments";
 }
 
 		$output = Minify_HTML::minify($output, $options);
+
+if (in_array("css",$minify)) { # set cssMinifier::minify options
+				$options = array("compress" => true,
+				"preserveComments" => false);
+
+		$output = Minify_CSS::minify($output, $options);
+}
 
 #$output = print_r($options);exit; #debug
 
@@ -216,7 +217,7 @@ if (in_array("javascript",$minify)) {
 	$exclude = explode(",","'.$this->getParam("exclude").'");
 #$output = print_r($exclude); exit; #debug
 
-		if (!in_array($plxShow->mode(),$exclude)) {
+		if ((!in_array($plxShow->mode(),$exclude)) AND (!in_array("post",$exclude))) { # post = AND ($_SERVER["REQUEST_METHOD"]!="POST"))
 		$delay = "'.$this->getParam("delay").'";
 		$cache = PLX_ROOT."cache/cache_".md5($_SERVER["QUERY_STRING"]).".html";
 		$expire = time() - $delay; # 3600 (1 hr)

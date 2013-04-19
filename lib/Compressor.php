@@ -2,9 +2,6 @@
 /**
  * Class Minify_CSS_Compressor 
  * @package Minify
- * Copyright (c) 2008 Ryan Grove <ryan@wonko.com>
- * Copyright (c) 2008 Steve Clay <steve@mrclay.org>
- * All rights reserved.
  */
 
 /**
@@ -39,14 +36,14 @@ class Minify_CSS_Compressor {
     }
     
     /**
-     * @var array
+     * @var array options
      */
     protected $_options = null;
     
     /**
-     * Are we "in" a hack? I.e. are some browsers targetted until the next comment?
-     *
-     * @var bool
+     * @var bool Are we "in" a hack?
+     * 
+     * I.e. are some browsers targetted until the next comment?
      */
     protected $_inHack = false;
     
@@ -55,6 +52,8 @@ class Minify_CSS_Compressor {
      * Constructor
      * 
      * @param array $options (currently ignored)
+     * 
+     * @return null
      */
     private function __construct($options) {
         $this->_options = $options;
@@ -109,7 +108,7 @@ class Minify_CSS_Compressor {
                 \\s*
                 :
                 \\s*
-                (\\b|[#\'"-])        # 3 = first character of a value
+                (\\b|[#\'"])        # 3 = first character of a value
             /x', '$1$2:$3', $css);
         
         // remove ws in selectors
@@ -237,16 +236,15 @@ class Minify_CSS_Compressor {
      */
     protected function _fontFamilyCB($m)
     {
-        // Issue 210: must not eliminate WS between words in unquoted families
-        $pieces = preg_split('/(\'[^\']+\'|"[^"]+")/', $m[1], null, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
-        $out = 'font-family:';
-        while (null !== ($piece = array_shift($pieces))) {
-            if ($piece[0] !== '"' && $piece[0] !== "'") {
-                $piece = preg_replace('/\\s+/', ' ', $piece);
-                $piece = preg_replace('/\\s?,\\s?/', ',', $piece);
-            }
-            $out .= $piece;
-        }
-        return $out . $m[2];
+        $m[1] = preg_replace('/
+                \\s*
+                (
+                    "[^"]+"      # 1 = family in double qutoes
+                    |\'[^\']+\'  # or 1 = family in single quotes
+                    |[\\w\\-]+   # or 1 = unquoted family
+                )
+                \\s*
+            /x', '$1', $m[1]);
+        return 'font-family:' . $m[1] . $m[2];
     }
 }

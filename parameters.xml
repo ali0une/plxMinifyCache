@@ -2,5 +2,5 @@
 <document>
 	<parameter name="delay" type="cdata"><![CDATA[3600]]></parameter>
 	<parameter name="exclude" type="string">article</parameter>
-	<parameter name="minify" type="string">javascript</parameter>
+	<parameter name="minify" type="string">css,javascript</parameter>
 </document>

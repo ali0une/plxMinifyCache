@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <document>
 	<title><![CDATA[plxMinifyCache]]></title>
-	<author><![CDATA[i M@N, Stephane F.]]></author>
-	<version>1.4</version>
-	<date>20/04/2013</date>
+	<author><![CDATA[i M@N, Stephane F., Thomas I.]]></author>
+	<version>1.5.0</version>
+	<date>16/09/2017</date>
 	<site>http://imanweb.free.fr/PluXML/</site>
 	<description><![CDATA[minifie et met en cache le source]]></description>
 	<requirements></requirements>

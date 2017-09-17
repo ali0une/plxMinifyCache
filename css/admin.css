@@ -1,0 +1,45 @@
+/* admin.css plxMinifyCache 1.5.0 */
+#plugin #action{ /* only in admin action bar plugin. 4 memory*/ }
+button {/* plx.5.5 */
+ padding: 0 0.4rem;
+}
+.icon_pmc{
+ width:30px;/* 3em */
+ vertical-align: bottom;
+ transition-duration: 0.618s;
+ filter: drop-shadow(0px 0px 0.1px #abc);
+}
+#clear,#zip,#zipdel{
+ vertical-align: middle;
+}
+#refresh:hover, a:hover>#config.icon_pmc{
+ -o-transform:      rotate(369deg);
+ -ms-transform:     rotate(369deg);
+ -moz-transform:    rotate(369deg);
+ -webkit-transform: rotate(369deg);
+ transform:         rotate(369deg);
+}
+button:hover>#clear, #CacheList a:hover>.icon_pmc{
+ -o-transform:      rotate(96deg);
+ -ms-transform:     rotate(96deg);
+ -moz-transform:    rotate(96deg);
+ -webkit-transform: rotate(96deg);
+ transform:         rotate(96deg);
+}
+button:hover>#zip,button:hover>#zipdel{
+ -o-transform:      scale(1.16) rotate(9deg);
+ -ms-transform:     scale(1.16) rotate(9deg);
+ -moz-transform:    scale(1.16) rotate(9deg);
+ -webkit-transform: scale(1.16) rotate(9deg);
+ transform:         scale(1.16) rotate(9deg);
+}
+@media (max-width: 767px){
+	#plugin .section, #parametres_plugin .section, #parametres_pluginhelp .section {}
+	.minifycache.in-action-bar{/* nojs helper ::: inc with js 4 solve overflow problem */
+		z-index:1;
+		margin-top: 7rem;
+		margin-left: -1.1em;
+		text-align: center; 
+	}
+	.mc-sml-hide{display:none;}
+}

@@ -43,3 +43,9 @@ Minify is made by [Steve Clay][mrclay_site] and [Ryan][ryan_site] check their [G
 [github_watch]: http://github.com/ali0une/plxMinifyCache/toggle_watch
 [github_follow]: http://github.com/users/follow?target=ali0une
 [twitter_follow]: http://twitter.com/ali0une
+
+## Programers & contributor
+### Todo & suggests
+* Link to download real source
+* Update Libs, but realy good work in php 5.5
+* In English and French languages, il y a des traducteurs...

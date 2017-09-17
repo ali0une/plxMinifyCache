@@ -2,5 +2,9 @@
 <document>
 	<parameter name="delay" type="cdata"><![CDATA[3600]]></parameter>
 	<parameter name="exclude" type="string">article,post</parameter>
+	<parameter name="less" type="string"></parameter>
 	<parameter name="minify" type="string">css,javascript</parameter>
+	<parameter name="freeze" type="numeric">0</parameter>
+	<parameter name="get" type="numeric">0</parameter>
+	<parameter name="powa" type="numeric">0</parameter>
 </document>

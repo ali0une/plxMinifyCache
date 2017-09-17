@@ -1,0 +1,27 @@
+# plxMnifyCache v1.5.1
+## Efficacité du code Amélioré
+* Espace Minimisé (ParseLessDoMore)
+* Algorithmes et interfaces rénovées
+
+Testé ét peaufiné sur des PluXml allant du 5.2 au 5.6
+Si l'interface utilisateur a de trop grandes images ou si c'est une mise à jour du plugin :
+nécessité de mettre à jour le code css admin manuellement, voir l'aide du plugin
+
+
+## Ajout de paramètres, webdev friendly:
+* Possibilité d’exclure plus de modes Pluxml avec une liste
+* Ajout d'un Système pour trouver les modes du moteur & le temps de "calcul" dans le source & la console
+* Ajout du mode "Frozen", les pages en cache restent telles quelles ad vitam æternam, les nouvelles pages mise en cache ainsi que les parties du site mémorisés deviennent statique.
+
+## Ajout d’utilitaires et interface admin actualisé et augmenté
+* Possibilité de télécharger un zip de la sauvegarde complète des fichier en cache (& le supprimer)
+* Possibilité d’effacer les fichier du cache un par un
+* Le titre ainsi que d’autre info sont extraite des sources en cache pour vous agrémenter les nouveaux lien de la page d'admin
+* Effet de bord bénéfique, il peut aider a trouver les objet introuvables, car par défaut il enregistre dans le cache les 404, le mode erreur de PluXml
+
+## Notes :
+* Dans cette version les fichiers de cache sont en PHP, cela permet d'afficher le temps pour délivré la page du cache, mais ça fait ralentir un peu, include() est utilisé au lieu de readfile() pour info ;)
+* Ajout d'un point (.) au nom du dossier de cache : cache 2 .cache
+* Il est préférable de supprimer le fichier zip présent dans le serveur après la sauvegarde.
+
+Enjoy it ;)

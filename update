@@ -1,22 +1,22 @@
 # plxMnifyCache v1.5.0
-## Éfficacité du code Amélioré
+## Efficacité du code Amélioré
 * Espace Minimisé (ParseLessDoMore)
-* Algorithmes et interfaces renovées
+* Algorithmes et interfaces rénovées
 
 Testé sur PluXml 5.2 ... 5.6
-Si l'interface utilisateur a de trops grandes images ou si c'est une mise à jour du plugin :
+Si l'interface utilisateur a de trop grandes images ou si c'est une mise à jour du plugin :
 nécessité de mettre à jour le code css admin manuellement, voir l'aide du plugin
 
-## Ajout de parametres, webmaster friendly:
-* Possibilité d'excludes plus de modes Pluxml avec une liste
+## Ajout de paramètres, webdev friendly:
+* Possibilité d’exclure plus de modes Pluxml avec une liste
 * Ajout d'un Système pour trouver les modes du moteur & le temps de "calcul" dans le source & la console
-* Ajout du mode Frozen, les pages en cache retent telles quelles ad vitam eternam, les partie du site mémorisé devienent statique, ainsi que les nouvelles page mise en cache.
+* Ajout du mode "Frozen", les pages en cache restent telles quelles ad vitam æternam, les nouvelles pages mise en cache ainsi que les parties du site mémorisés deviennent statique.
 
-## Ajout d'utiltaires et interface admin actualisé et augmenté
-* Possibilité de téléchager un zip de la sauvegarde complete des fichier en cache (& le supprimer)
-* Possibilité d'éffacer les fichier du cache un par un
-* Le titre ainsi que dautre info sont extraite des sources en cache pour vous agrémenter les nouveaux lien de la page d'admin
-* Effet de bord bénefique, il peut aider a trouver les objet introuvables, car par defaut il enregistre dans le cache les 404, le mode erreur de PluXml
+## Ajout d’utilitaires et interface admin actualisé et augmenté
+* Possibilité de télécharger un zip de la sauvegarde complète des fichier en cache (& le supprimer)
+* Possibilité d’effacer les fichier du cache un par un
+* Le titre ainsi que d’autre info sont extraite des sources en cache pour vous agrémenter les nouveaux lien de la page d'admin
+* Effet de bord bénéfique, il peut aider a trouver les objet introuvables, car par défaut il enregistre dans le cache les 404, le mode erreur de PluXml
 
 ## Notes :
 * Dans cette version les fichiers de cache sont en PHP, cela permet d'afficher le temps pour délivré la page du cache, mais ça fait ralentir un peu, include() est utilisé au lieu de readfile() pour info ;)

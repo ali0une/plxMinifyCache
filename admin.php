@@ -50,6 +50,7 @@ if(file_exists(PLX_CACHE.$zipname)){#goto zip 4 download, &confirm del zip (afte
 </form>
 <?php echo $imgzip; $plxPlugin->plxMinifyCacheList(); ?>
 <script type="text/javascript" style="display:none">
+<?php echo $delzip ?>
 	var a = document.querySelectorAll('a.hide');
 	for (i=0; i<a.length; i++)
 		a[i].className="";/* unhide js clean file link */
@@ -62,6 +63,5 @@ if(file_exists(PLX_CACHE.$zipname)){#goto zip 4 download, &confirm del zip (afte
 	a.className = '';/* remove css nojs helper */
 	a.firstChild.className = 'show';/* remove css nojs helper */
 	z.appendChild(a);
-<?php echo $delzip ?>
 </script>
 <?php echo $fresh;

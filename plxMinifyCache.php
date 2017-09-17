@@ -1,4 +1,5 @@
 <?php #@version 1.5.0 * @date 16/09/2017 Plugin plxMinifyCache * @package PLX * @author i M@N, Stephane F., Thomas I.
+if (!defined('PLX_ROOT')) exit;
 if (!defined('PLX_CACHE'))define('PLX_CACHE',PLX_ROOT.".cache/");
 class plxMinifyCache extends plxPlugin{
 	public function __construct($default_lang){

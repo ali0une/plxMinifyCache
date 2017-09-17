@@ -1,11 +1,12 @@
-# plxMnifyCache v1.5.0
+# plxMnifyCache v1.5.1
 ## Efficacité du code Amélioré
 * Espace Minimisé (ParseLessDoMore)
 * Algorithmes et interfaces rénovées
 
-Testé sur PluXml 5.2 ... 5.6
+Testé ét peaufiné sur des PluXml allant du 5.2 au 5.6
 Si l'interface utilisateur a de trop grandes images ou si c'est une mise à jour du plugin :
 nécessité de mettre à jour le code css admin manuellement, voir l'aide du plugin
+
 
 ## Ajout de paramètres, webdev friendly:
 * Possibilité d’exclure plus de modes Pluxml avec une liste

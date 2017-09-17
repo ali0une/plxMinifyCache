@@ -1,12 +1,24 @@
-<?php #@version 1.5.0 * @date 16/09/2017 Plugin plxMinifyCache * @package PLX * @author i M@N, Stephane F., Thomas I.
-if (!defined('PLX_ROOT')) exit;
-if (!defined('PLX_CACHE'))define('PLX_CACHE',PLX_ROOT.".cache/");
+<?php #@version 1.5.1 * @date 17/09/2017 Plugin plxMinifyCache * @package PLX * @author i M@N, Stephane F., Thomas I.
+if(!defined('PLX_ROOT')) exit;
+if(!defined('PLX_CACHE')) define('PLX_CACHE',PLX_ROOT.".cache/");
 class plxMinifyCache extends plxPlugin{
 	public function __construct($default_lang){
 		parent::__construct($default_lang);
 		$this->setConfigProfil(PROFIL_ADMIN);
 		$this->setAdminProfil(PROFIL_ADMIN);
-		$this->addHook('IndexEnd', 'IndexEnd');
+		if(defined('PLX_ADMIN')){#hook partie admin
+			$this->addHook('AdminTopEndHead', 'AdminTopEndHead');
+		}
+		else{#hook partie visiteur
+			$this->addHook('IndexEnd', 'IndexEnd');
+		}
+	}
+ public function AdminTopEndHead(){# inclure admin.css, limité a pluxml 5.2 & antérieur
+echo '<?php '; ?>
+		if (isset($plxAdmin->version) && version_compare($plxAdmin->version, "5.2", "<="))#$plxMotor/$plxAdmin->version removed in 5.5
+			if (((basename($_SERVER['SCRIPT_NAME'])=='plugin.php' || basename($_SERVER['SCRIPT_NAME'])=='parametres_plugin.php')) && (isset($_GET['p']) && $_GET['p']=='plxMinifyCache'))
+				echo '<link rel="stylesheet" type="text/css" href="'.PLX_PLUGINS.'plxMinifyCache/css/admin.css" />'.PHP_EOL;
+<?php echo ' ?>';
 	}
 	public function size_readable($bytes, $decimals = 2){# Méthode appelée dans l'administration pour calculer la taille du cache * @return	human readable size * @author	Rommel Santor : http://rommelsantor.com/
 	$sz = 'BKMGTP';

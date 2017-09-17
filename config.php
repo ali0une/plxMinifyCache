@@ -3,11 +3,11 @@
  * Plugin plxMinifyCache
  *
  * @package	PLX
- * @version	1.5.0
- * @date	16/09/2017
+ * @version	1.5.1
+ * @date	17/09/2017
  * @author	i M@N, Thomas I.
  **/
-if(!defined('PLX_ROOT')) exit; 
+if(!defined('PLX_ROOT')) exit;
 
 # Control du token du formulaire
 plxToken::validateFormToken($_POST);

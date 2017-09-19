@@ -195,8 +195,8 @@ if (in_array("javascript",$minify)) {
 $options = array("xhtml" => true); # set Minify_HTML::minify options
 
 if (in_array("javascript",$minify)) { # set jsMinifier::minify options
-				$options[jsMinifier][0] = "JSMin";
-				$options[jsMinifier][1] = "minify";
+				$options["jsMinifier"][0] = "JSMin";
+				$options["jsMinifier"][1] = "minify";
 				$options[0] = "jsCleanComments";
 }
 
